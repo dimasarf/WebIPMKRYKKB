@@ -16,5 +16,8 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/', 'HalamanAwalController@index');
+Route::get('registrasi-selesai', function(){
+  return view('Selesai');
+});
+Route::get('registrasi-anggota2', 'Anggota2Controller@index');
+Route::post('registrasi-anggota2', 'Anggota2Controller@store');
