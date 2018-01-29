@@ -20,6 +20,9 @@
               <div class="modal-body">
                 <h3 class="text-center">Terima kasih. Data anda sudah kami simpan</h3>
               </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-block">Isi data lagi</button>
+              </div>
             </div>
           </div>
         </div>

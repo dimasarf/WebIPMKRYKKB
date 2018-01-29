@@ -76,9 +76,15 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
                   </fieldset>
-
-
                 </form>
+                <br>
+                @if (count($errors)>0)
+                    @foreach ($errors->all() as $error)
+                      <div class="alert alert-danger">
+                        {{$error}}
+                      </div>
+                    @endforeach
+                @endif
               </div>
 
             <div class="modal-footer">
