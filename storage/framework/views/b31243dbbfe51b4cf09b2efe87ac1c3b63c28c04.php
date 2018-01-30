@@ -11,7 +11,7 @@
     <title><?php echo e(config('app.name', 'Laravel')); ?></title>
 
     <!-- Styles -->
-    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -43,36 +43,35 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        <?php if(auth()->guard()->guest()): ?>
-                            <li><a href="<?php echo e(route('login')); ?>">Login</a></li>
-                            <li><a href="<?php echo e(route('register')); ?>">Register</a></li>
-                        <?php else: ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
-                                </a>
 
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="<?php echo e(route('logout')); ?>"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
-                                            <?php echo e(csrf_field()); ?>
-
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
         </nav>
+        <?php if(auth()->guard()->guest()): ?>
+            <li><a href="<?php echo e(route('login')); ?>">Login</a></li>
+            <li><a href="<?php echo e(route('register')); ?>">Register</a></li>
+        <?php else: ?>
+          
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                    <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
+                </a>
 
+
+
+                        <a href="<?php echo e(route('logout')); ?>"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+
+                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                            <?php echo e(csrf_field()); ?>
+
+                        </form>
+
+
+        <?php endif; ?>
         <?php echo $__env->yieldContent('content'); ?>
     </div>
 

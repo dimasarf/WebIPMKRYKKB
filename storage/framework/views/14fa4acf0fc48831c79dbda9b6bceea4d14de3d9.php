@@ -20,21 +20,22 @@
       <ul class="navbar-nav">
 
     </ul>
-    @guest
+    <?php if(auth()->guard()->guest()): ?>
       <script type="text/javascript">
   window.location = "{ url('/login') }";//here double curly bracket
 </script>
-    @else
+    <?php else: ?>
       <ul class="navbar-nav ml-auto mr-5">
         <li class="nav-item">
-          <a class="nav-link" href="#">Welcome, {{ Auth::user()->name }}</a>
+          <a class="nav-link" href="#">Welcome, <?php echo e(Auth::user()->name); ?></a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+          <a class="nav-link" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">Logout</a>
-                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                       {{ csrf_field() }}
+                   <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                       <?php echo e(csrf_field()); ?>
+
                    </form>
         </li>
         <li class="nav-item">
@@ -42,7 +43,7 @@
         </li>
         </li>
       </ul>
-    @endguest
+    <?php endif; ?>
 
     </div>
   </nav>
@@ -178,7 +179,7 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="{{url('js/bootstrap.min.js')}}"></script>
+    <script src="<?php echo e(url('js/bootstrap.min.js')); ?>"></script>
 
   </body>
 
