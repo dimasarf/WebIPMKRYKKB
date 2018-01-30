@@ -13,7 +13,7 @@ class Anggota2Controller extends Controller
       return view('Registrasi');
   }
 
-  public function store(Request $request)
+  public function store(Request $request, $id)
   {
       $anggota = new anggota();
       $this->validate($request,
@@ -37,7 +37,14 @@ class Anggota2Controller extends Controller
       $anggota->jurusan = $request->jurusan;
       $anggota->angkatan = $request->angkatan;
       $anggota->idLine = $request->idLine;
-      $anggota->keanggotaan = "anggota";
+      if($id = 'anggota')
+      {
+        $anggota->keanggotaan = "anggota";
+      }
+      else
+      {
+        $anggota->keanggotaan = "pengurus";
+      }
       $anggota->save();
       return redirect('/registrasi-selesai');
    }

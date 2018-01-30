@@ -19,8 +19,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('registrasi-selesai', function(){
   return view('Selesai');
 });
-Route::get('Dashboard', function(){
-  return view('Dashboard');
-});
+Route::get('Dashboard','DashboardController@index');
+Route::get('Dashboard/Pengurus','DashboardController@indexPengurus');
+Route::get('Dashboard/Anggota-Biasa','DashboardController@indexAnggotaBiasa');
 Route::get('registrasi-anggota2', 'Anggota2Controller@index');
 Route::post('registrasi-anggota2', 'Anggota2Controller@store');
+Route::get('exportPengurus','DashboardController@ExportPengurus')->name('export.pengurus');
+Route::get('exportAnggotaBiasa','DashboardController@ExportAnggotaBiasa')->name('export.anggotaBiasa');
