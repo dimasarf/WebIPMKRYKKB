@@ -50,6 +50,7 @@ class Anggota2Controller extends Controller
    public function delete(Request $request)
    {
        anggota::where('id',$request->id)->delete();
+       return response()->json(['done']);
    }
 
    public function storePengurus(Request $request)

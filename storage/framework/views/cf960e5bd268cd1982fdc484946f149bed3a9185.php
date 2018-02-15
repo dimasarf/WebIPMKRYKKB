@@ -30,7 +30,7 @@
   </thead>
   <tbody>
   <?php $__currentLoopData = $anggota; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $anggotA): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <tr>
+    <tr id="baris">
       <input type="hidden" name="" value="<?php echo e($anggotA->id); ?>" id="idAnggota">
       <td value="<?php echo e($anggotA->id); ?>"><?php echo e($anggotA->id); ?></td>
       <td class="namaLengkap"><?php echo e($anggotA->namaLengkap); ?></td>
@@ -43,13 +43,15 @@
       <td><?php echo e($anggotA->angkatan); ?></td>
       <td><?php echo e($anggotA->idLine); ?></td>
       <td><?php echo e($anggotA->keanggotaan); ?></td>
-        <td><button type="button" class="btn btn-danger aksi" data-toggle="modal" data-target="#myModal">Aksi</button></td>
+      <td><button type="button" class="btn btn-danger aksi" data-toggle="modal" data-target="#myModal">Edit</button></td>
+      <td><button type="button" class="btn btn-warning hapus" data-dismiss="modal" id="delete">Hapus</button></td>
     </tr>
 
   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
   </tbody>
   </table>
+
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -128,7 +130,6 @@
         <?php endif; ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning" data-dismiss="modal" id="delete">Hapus</button>
         <button type="button" class="btn btn-primary">Simpan</button>
       </div>
     </div>
@@ -195,20 +196,25 @@
 
        });
 
-     });
+       $('.table tbody').on('click','.hapus', function () {
+          var currow = $(this).closest('tr');
+          var id = currow.find('td:eq(0)').text();
+          console.log(id);
+          $.post('delete', {'id':id, '_token':$('input[name=_token]').val()}, function(data) {
+              $('#tabel').load(location.href + ' #tabel');
+              location.reload();
+              //$('#baris').remove();
+          });
+         });
+
+
+       });
+
   </script>
 
 
   <script type="text/javascript">
-    $('#delete').click(function(event) {
 
-      var id = $("#iD").val();
-      $.post('delete', {'id':id, '_token':$('input[name=_token]').val()}, function(data) {
-        $('#tabel').load(location.href + ' #tabel');
-        console.log(data);
-
-      });
-    });
   </script>
   </div>
   </div>
