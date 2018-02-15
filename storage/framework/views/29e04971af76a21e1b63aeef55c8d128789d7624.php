@@ -18,10 +18,10 @@
               </div>
 
               <div class="modal-body">
-                <h4 class="text-center">Registrasi Anggota IPMKRY-KKB</h4>
+                <h4 class="text-center">Registrasi Pengurus IPMKRY-KKB</h4>
                 <br>
 
-                <form method="POST" action="/registrasi-anggota">
+                <form method="POST" action="<?php echo e(url('/registrasi-pengurus')); ?>">
                     <?php echo e(csrf_field()); ?>
 
                   <fieldset>
@@ -32,7 +32,7 @@
 
                     <div class="form-group">
                       <label for="TTL" class="control-label">Tanggal Lahir</label>
-                      <input type="date" class="form-control" id="tanggalLahir" placeholder="dd/mm/yyyy" name="tanggalLahir">
+                      <input type="text" class="form-control" id="tanggalLahir" placeholder="dd/mm/yyyy" name="tanggalLahir">
                     </div>
 
                     <label for="message-text" class="control-label">Jenis Kelamin</label>
@@ -101,7 +101,6 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="<?php echo e(url('js/bootstrap.min.js')); ?>"></script>
   </body>
 </html>

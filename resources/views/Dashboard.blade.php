@@ -1,8 +1,6 @@
 @extends('layouts.template')
 
-@section('breadcrumb')
-  <li class="active">Dashboard</li>
-@endsection
+
 
 @section('content')
   <div class="card">
@@ -62,6 +60,7 @@
   <th>Angkatan</th>
   <th>Id Line</th>
   <th>Keanggotaan</th>
+  <th>Aksi</th>
 </tr>
 </thead>
 <tbody>
@@ -77,6 +76,7 @@
     <td>{{$anggotA->angkatan}}</td>
     <td>{{$anggotA->idLine}}</td>
     <td>{{$anggotA->keanggotaan}}</td>
+    <td><button type="button" class="btn btn-danger">Aksi</button></td>
   </tr>
 
 @endforeach

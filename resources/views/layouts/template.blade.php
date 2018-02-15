@@ -50,21 +50,22 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-10 ">
+        <div class="col-lg-5 ">
             <h3 class=""><span><img src="Logo2.png" class=""alt="" width="55px"></span> Dashboard </h3>
         </div>
-        <div class="col-lg-2">
-          <div class="dropdown float-right ml-auto">
-        <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Aksi
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Tambahkan Anggota</a>
-        <a class="dropdown-item" href="#">Edit Anggota</a>
-        <a class="dropdown-item" href="#">Hapus Anggota</a>
+        <div class="col-lg-6">
+
+          <form class="form col-lg-9" method="get" action="{{route('dashboard.search')}}">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Cari berdasarkan nama..." name="keyWord">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="submit">Cari!</button>
+              </span>
+            </div>
+
+          </form>
         </div>
-        </div>
-        </div>
+
       </div>
     </div>
   </header>
@@ -74,7 +75,7 @@
       <ol class="breadcrumb mr-5">
         @yield('breadcrumb')
       </ol>
-      <div class="col-lg-12">
+      <div class="col-lg-12"id="tess">
 
       </div>
 
@@ -82,6 +83,7 @@
   </section>
 
   <section>
+
     <div class="container ml-5">
       <div class="row">
         <div class="col-lg-3">
@@ -89,8 +91,9 @@
             <a href="/Dashboard" class="list-group-item active main-color-bg">
               <span><img src="dashboard.png" alt="" class="img-rounded" width="20px"></span> Dashboard
             </a>
-              <a href="/Dashboard/Anggota-Biasa" class="list-group-item list-group-item-action"><span><img src="anggota.png" alt="" class="img-rounded" width="30px"></span> Anggota</a>
-            <a href="/Dashboard/Pengurus" class="list-group-item list-group-item-action"><span><img src="pengurus.png" alt="" class="img-rounded" width="30px"></span> Pengurus</a>
+              <a href="{{route('dashboard.anggotaBiasa')}}" id="linkk" class="list-group-item list-group-item-action"><span><img src="anggota.png" alt="" class="img-rounded" width="30px"></span> Anggota</a>
+
+            <a href="{{route('dashboard.pengurus')}}" class="list-group-item list-group-item-action"><span><img src="pengurus.png" alt="" class="img-rounded" width="30px"></span> Pengurus</a>
           </div>
           <br>
           <div class="card">
@@ -102,24 +105,25 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9" id="kontent">
           @yield('content')
 
         </div>
+
       </div>
       </div>
     </div>
   </section>
     </div>
     <script  src="http://code.jquery.com/jquery-3.3.1.js"  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="  crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" integrity="sha256-N4u5BjTLNwmGul6RgLoESPNqDFVUibVuOYhP4gJgrew=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" integrity="sha256-c0m8xzX5oOBawsnLVpHnU2ieISOvxi584aNElFl2W6M=" crossorigin="anonymous"></script>
 
     <script src="{{url('js/bootstrap.min.js')}}"></script>
-    <script>
+    <script type="text/javascript">
       var chart = document.getElementById('canvas').getContext('2d');
       var pengurus = @json($persentasePengurus);
       var anggotaBiasa = @json($persentaseAnggotaBiasa);
@@ -139,7 +143,15 @@
         },
         option:{}
       });
+      $(document).ready(function () {
+        $('#linkk').click(function () {
+          $.get('/Dashboard/Anggota-Biasa', function(data){
+            $('#kontent').append(data);
+          });
+        });
+      });
     </script>
+
   </body>
 
 

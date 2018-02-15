@@ -1,7 +1,3 @@
-<?php $__env->startSection('breadcrumb'); ?>
-  <li class="active">Dashboard</li>
-<?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('content'); ?>
   <div class="card">
     <div class="card-header main-color-bg">
@@ -60,6 +56,7 @@
   <th>Angkatan</th>
   <th>Id Line</th>
   <th>Keanggotaan</th>
+  <th>Aksi</th>
 </tr>
 </thead>
 <tbody>
@@ -75,6 +72,7 @@
     <td><?php echo e($anggotA->angkatan); ?></td>
     <td><?php echo e($anggotA->idLine); ?></td>
     <td><?php echo e($anggotA->keanggotaan); ?></td>
+    <td><button type="button" class="btn btn-danger">Aksi</button></td>
   </tr>
 
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

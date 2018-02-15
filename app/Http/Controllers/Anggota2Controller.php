@@ -13,7 +13,7 @@ class Anggota2Controller extends Controller
       return view('Registrasi');
   }
 
-  public function store(Request $request, $id)
+  public function store(Request $request)
   {
       $anggota = new anggota();
       $this->validate($request,
@@ -37,15 +37,47 @@ class Anggota2Controller extends Controller
       $anggota->jurusan = $request->jurusan;
       $anggota->angkatan = $request->angkatan;
       $anggota->idLine = $request->idLine;
-      if($id = 'anggota')
-      {
-        $anggota->keanggotaan = "anggota";
-      }
-      else
-      {
-        $anggota->keanggotaan = "pengurus";
-      }
+      $anggota->keanggotaan = "anggota";
       $anggota->save();
       return redirect('/registrasi-selesai');
    }
+
+   public function indexPengurus()
+   {
+       return view('RegistrasiPengurus');
+   }
+
+   public function delete(Request $request)
+   {
+       anggota::where('id',$request->id)->delete();
+   }
+
+   public function storePengurus(Request $request)
+   {
+       $anggota = new anggota();
+       $this->validate($request,
+       [
+         'namaLengkap'=>'required',
+         'tanggalLahir'=>'required',
+         'jenisKelamin'=>'required',
+         'alamatJogja'=>'required',
+         'alamatBatam'=>'required',
+         'universitas'=>'required',
+         'jurusan'=>'required',
+         'angkatan'=>'required',
+         'idLine'=>'required'
+       ]);
+       $anggota->namaLengkap = $request->namaLengkap;
+       $anggota->tanggalLahir = $request->tanggalLahir;
+       $anggota->jenisKelamin = $request->jenisKelamin;
+       $anggota->alamatJogja = $request->alamatJogja;
+       $anggota->alamatBatam = $request->alamatBatam;
+       $anggota->universitas = $request->universitas;
+       $anggota->jurusan = $request->jurusan;
+       $anggota->angkatan = $request->angkatan;
+       $anggota->idLine = $request->idLine;
+       $anggota->keanggotaan = "pengurus";
+       $anggota->save();
+       return redirect('/registrasi-selesai');
+    }
 }

@@ -29,6 +29,16 @@ class DashboardController extends Controller
       })->download('xls');
     }
 
+    public function Search(Request $request)
+    {
+
+      $persentasePengurus = $this->PersentasePengurus();
+      $persentaseAnggotaBiasa = $this->PersentaseAnggotaBiasa();
+      $keyWord = $request->keyWord;
+      $pengurus = anggota::like('namaLengkap',$keyWord)->get();
+      return view('TblCari',compact('pengurus','persentasePengurus','persentaseAnggotaBiasa'))->render();
+    }
+
     public function ExportAnggotaBiasa()
     {
       $anggota = $anggota = anggota::where(['keanggotaan' => 'anggota'])->get();
@@ -51,8 +61,8 @@ class DashboardController extends Controller
     {
       $persentasePengurus = $this->PersentasePengurus();
       $persentaseAnggotaBiasa = $this->PersentaseAnggotaBiasa();
-      $anggota = anggota::where(['keanggotaan' => 'anggota'])->paginate(2);
-      return view('TblAnggotaBiasa',compact('anggota','persentasePengurus','persentaseAnggotaBiasa'));
+      $anggota = anggota::where(['keanggotaan' => 'anggota'])->paginate(4);
+      return view('TblAnggotaBiasa',compact('anggota','persentasePengurus','persentaseAnggotaBiasa'))->render();
     }
 
     public function HitungAnggota()
