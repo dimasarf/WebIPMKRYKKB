@@ -3,7 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Registrasi</title>
+    <style media="screen">
+      .hakCipta {
+      font-size: 13px;
+      }
 
+    </style>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
   </head>
   <body style="background-color:#2d3436" style="width:400px;">
@@ -21,7 +26,9 @@
                 <h3 class="text-center">Terima kasih. Data anda sudah kami simpan</h3>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-block">Isi data lagi</button>
+                <div class="col-lg-12">
+                  <p class="text-center hakCipta">© 2018 IPMKRY-KKB</p>
+                </div>
               </div>
             </div>
           </div>
@@ -31,5 +38,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="{{url('js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript">
+      $('#tutup').click(function(event) {
+        window.close();
+      });
+    </script>
   </body>
 </html>

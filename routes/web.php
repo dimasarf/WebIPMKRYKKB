@@ -17,7 +17,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('registrasi-selesai', function(){
-  return view('rrr');
+  return view('Selesai');
 });
 Route::get('Dashboard','DashboardController@index');
 Route::get('Dashboard-Pengurus','DashboardController@indexPengurus')->name('dashboard.pengurus');
@@ -25,6 +25,7 @@ Route::get('Dashboard-Anggota-Biasa','DashboardController@indexAnggotaBiasa')->n
 Route::get('Dashboard-Search','DashboardController@Search')->name('dashboard.search');
 Route::get('registrasi-anggota', 'Anggota2Controller@index');
 Route::post('delete', 'Anggota2Controller@delete');
+Route::post('edit-anggota', 'Anggota2Controller@editAnggota');
 Route::post('registrasi-anggota', 'Anggota2Controller@store');
 Route::get('registrasi-pengurus', 'Anggota2Controller@indexPengurus');
 Route::post('registrasi-pengurus', 'Anggota2Controller@storePengurus');

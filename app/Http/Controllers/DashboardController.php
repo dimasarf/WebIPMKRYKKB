@@ -35,8 +35,8 @@ class DashboardController extends Controller
       $persentasePengurus = $this->PersentasePengurus();
       $persentaseAnggotaBiasa = $this->PersentaseAnggotaBiasa();
       $keyWord = $request->keyWord;
-      $pengurus = anggota::like('namaLengkap',$keyWord)->get();
-      return view('TblCari',compact('pengurus','persentasePengurus','persentaseAnggotaBiasa'))->render();
+      $anggota = anggota::like('namaLengkap',$keyWord)->paginate();
+      return view('TblAnggotaBiasa',compact('anggota','persentasePengurus','persentaseAnggotaBiasa'))->render();
     }
 
     public function ExportAnggotaBiasa()
@@ -53,8 +53,8 @@ class DashboardController extends Controller
     {
       $persentasePengurus = $this->PersentasePengurus();
       $persentaseAnggotaBiasa = $this->PersentaseAnggotaBiasa();
-      $pengurus = anggota::where(['keanggotaan' => 'pengurus'])->paginate(15);
-      return view('TblPengurus',compact('pengurus','persentasePengurus','persentaseAnggotaBiasa'));
+      $anggota = anggota::where(['keanggotaan' => 'pengurus'])->paginate(15);
+      return view('TblAnggotaBiasa',compact('anggota','persentasePengurus','persentaseAnggotaBiasa'));
     }
 
     public function indexAnggotaBiasa()
@@ -87,16 +87,34 @@ class DashboardController extends Controller
     {
       $anggota = $this->HitungAnggota();
       $pengurus = $this->HitungPengurus();
-      $hasil = ($pengurus / $anggota) * 100;
-      return $hasil;
+      if($anggota > 0 )
+      {
+        $hasil = ($pengurus / $anggota) * 100;
+        return $hasil;
+      }
+      else
+      {
+        $hasil = 0;
+        return $hasil;
+      }
+
     }
 
     public function PersentaseAnggotaBiasa()
     {
       $anggota = $this->HitungAnggota();
       $anggotaBiasa = $this->HitungAnggotaBiasa();
-      $hasil = ($anggotaBiasa / $anggota) * 100;
-      return $hasil;
+      if($anggota > 0 )
+      {
+        $hasil = ($anggotaBiasa / $anggota) * 100;
+        return $hasil;
+      }
+      else
+      {
+        $hasil = 0;
+        return $hasil;
+      }
+
     }
 
 }

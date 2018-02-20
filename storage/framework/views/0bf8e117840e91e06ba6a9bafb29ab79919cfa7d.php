@@ -24,6 +24,7 @@
     <th>Angkatan</th>
     <th>Id Line</th>
     <th>Keanggotaan</th>
+    <th>Keanggotaan</th>
   </tr>
   </thead>
   <tbody>
@@ -39,6 +40,7 @@
       <td><?php echo e($anggotA->angkatan); ?></td>
       <td><?php echo e($anggotA->idLine); ?></td>
       <td><?php echo e($anggotA->keanggotaan); ?></td>
+      <td><button type="button" class="btn btn-primary">Aksi</button></td>
     </tr>
 
   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -53,7 +53,7 @@
 
                     <div class="form-group">
                       <label for="alamatBatam" class="control-label">Alamat di Batam</label>
-                      <textarea class="form-control" name="alamatBatam" id="alamatJogja"></textarea>
+                      <textarea class="form-control" name="alamatBatam" id="alamatBatam"></textarea>
                     </div>
 
                     <div class="form-group">

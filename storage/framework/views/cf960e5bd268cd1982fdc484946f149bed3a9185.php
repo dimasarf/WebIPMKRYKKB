@@ -25,7 +25,6 @@
     <th>Angkatan</th>
     <th>Id Line</th>
     <th>Keanggotaan</th>
-    <th>Keanggotaan</th>
   </tr>
   </thead>
   <tbody>
@@ -43,8 +42,7 @@
       <td><?php echo e($anggotA->angkatan); ?></td>
       <td><?php echo e($anggotA->idLine); ?></td>
       <td><?php echo e($anggotA->keanggotaan); ?></td>
-      <td><button type="button" class="btn btn-danger aksi" data-toggle="modal" data-target="#myModal">Edit</button></td>
-      <td><button type="button" class="btn btn-warning hapus" data-dismiss="modal" id="delete">Hapus</button></td>
+      <td><button type="button" class="btn btn-danger hapus" data-dismiss="modal" id="delete">Hapus</button></td>
     </tr>
 
   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -62,7 +60,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="/registrasi-anggota">
+        <form method="POST" action="/edit-anggota" id="form">
             <?php echo e(csrf_field()); ?>
 
           <fieldset>
@@ -130,7 +128,7 @@
         <?php endif; ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Simpan</button>
+        <button type="button" class="btn btn-primary" id="simpan">Simpan</button>
       </div>
     </div>
   </div>
@@ -193,9 +191,7 @@
            $('#lakiLaki').prop("checked",true);
          }
          console.log(id);
-
        });
-
        $('.table tbody').on('click','.hapus', function () {
           var currow = $(this).closest('tr');
           var id = currow.find('td:eq(0)').text();
@@ -205,8 +201,53 @@
               location.reload();
               //$('#baris').remove();
           });
-         });
+        });
 
+      $('#simpan').click(function(event) {
+
+          $.ajax({
+          url: '/edit-anggota',
+          type: 'post',
+          data: $('#form').serialize(), /*{
+            '_token': $('input[name=_token]').val(),
+            'id' : $("#iD").val(),
+            'tanggalLahir' : $('#tanggalLahir').val(),
+            'alamatJogja' : $('#tanggalLahir').val(),
+            'alamatBatam' : $('#alamatBatam').val(),
+            'universitas' : $('#universitas').val(),
+            'jurusan' : $('#jurusan').val(),
+            'angkatan' : $('#angkatan').val(),
+            'idLine' : $('#idLine').val()
+          },*/
+          success: function(data) {
+               console.log("Suksess cukk");
+           }
+        });
+
+
+
+        /*var id = $("#iD").val();
+        var namaLengkap = $('#namaLengkap').val();
+        console.log(namaLengkap);
+        var tanggalLahir = $('#tanggalLahir').val();
+        console.log(tanggalLahir);
+        var alamatJogja = $('#alamatJogja').val();
+        console.log(alamatJogja);
+        var alamatBatam = $('#alamatBatam').val();
+        console.log(alamatBatam);
+        var universitas = $('#universitas').val();
+        console.log(universitas);
+        var jurusan = $('#jurusan').val();
+        console.log(jurusan);
+        var angkatan = $('#angkatan').val();
+        console.log(angkatan);
+        var idLine = $('#idLine').val();
+        console.log(idLine);
+        $.post('edit-anggota', {'id':id, '_token':$('input[name=_token]').val()}, function(data) {
+          $('#tabel').load(location.href + ' #tabel');
+          console.log(data);
+        });*/
+      });
 
        });
 

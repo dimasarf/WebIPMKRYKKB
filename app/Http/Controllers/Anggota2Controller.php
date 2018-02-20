@@ -81,4 +81,20 @@ class Anggota2Controller extends Controller
        $anggota->save();
        return redirect('/registrasi-selesai');
     }
+
+    public function editAnggota(Request $request)
+    {
+      $anggota = anggota::find($request->id);
+      $anggota->namaLengkap = $request->namaLengkap;
+      $anggota->tanggalLahir = $request->tanggalLahir;
+      $anggota->jenisKelamin = $request->jenisKelamin;
+      $anggota->alamatJogja = $request->alamatJogja;
+      $anggota->alamatBatam = $request->alamatBatam;
+      $anggota->universitas = $request->universitas;
+      $anggota->jurusan = $request->jurusan;
+      $anggota->angkatan = $request->angkatan;
+      $anggota->idLine = $request->idLine;
+      //$anggota->save();
+      return response()->json($anggota);
+    }
 }
