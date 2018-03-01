@@ -38,6 +38,12 @@ class Anggota2Controller extends Controller
       $anggota->angkatan = $request->angkatan;
       $anggota->idLine = $request->idLine;
       $anggota->keanggotaan = "anggota";
+      $anggota->agama = $request->agama;
+      $anggota->noPribadi = $request->noPribadi;
+      $anggota->noOrtu = $request->noOrtu;
+      $anggota->tempatLahir = $request->tempatLahir;
+      $anggota->sumberInformasi = $request->sumberInformasi;
+      $anggota->asalSekolah = $request->asalSekolah;
       $anggota->save();
       return redirect('/registrasi-selesai');
    }
@@ -78,6 +84,12 @@ class Anggota2Controller extends Controller
        $anggota->angkatan = $request->angkatan;
        $anggota->idLine = $request->idLine;
        $anggota->keanggotaan = "pengurus";
+       $anggota->agama = $request->agama;
+       $anggota->noPribadi = $request->noPribadi;
+       $anggota->noOrtu = $request->noOrtu;
+       $anggota->tempatLahir = $request->tempatLahir;
+       $anggota->sumberInformasi = $request->sumberInformasi;
+       $anggota->asalSekolah = $request->asalSekolah;
        $anggota->save();
        return redirect('/registrasi-selesai');
     }

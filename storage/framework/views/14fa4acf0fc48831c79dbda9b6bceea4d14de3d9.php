@@ -48,15 +48,20 @@
 <tr>
   <th>Nama Lengkap</th>
   <th>Tanggal Lahir</th>
+  <th>Tempat Lahir</th>
   <th>Jenis Kelamin</th>
   <th>Alamat Jogja</th>
   <th>Alamat Batam</th>
   <th>Universitas</th>
   <th>Jurusan</th>
   <th>Angkatan</th>
+  <th>Asal Sekolah</th>
   <th>Id Line</th>
   <th>Keanggotaan</th>
-  <th>Aksi</th>
+  <th>Agama</th>
+  <th>Nomor Hp Pribadi</th>
+  <th>Nomor HP Orangtua</th>
+  <th>Sumber Informasi</th>
 </tr>
 </thead>
 <tbody>
@@ -64,15 +69,20 @@
   <tr>
     <td><?php echo e($anggotA->namaLengkap); ?></td>
     <td><?php echo e($anggotA->tanggalLahir); ?></td>
+    <td><?php echo e($anggotA->tempatLahir); ?></td>
     <td><?php echo e($anggotA->jenisKelamin); ?></td>
     <td><?php echo e($anggotA->alamatJogja); ?></td>
     <td><?php echo e($anggotA->alamatBatam); ?></td>
     <td><?php echo e($anggotA->universitas); ?></td>
     <td><?php echo e($anggotA->jurusan); ?></td>
     <td><?php echo e($anggotA->angkatan); ?></td>
+    <td><?php echo e($anggotA->asalSekolah); ?></td>
     <td><?php echo e($anggotA->idLine); ?></td>
     <td><?php echo e($anggotA->keanggotaan); ?></td>
-    <td><button type="button" class="btn btn-danger">Aksi</button></td>
+    <td><?php echo e($anggotA->agama); ?></td>
+    <td><?php echo e($anggotA->noPribadi); ?></td>
+    <td><?php echo e($anggotA->noOrtu); ?></td>
+    <td><?php echo e($anggotA->sumberInformasi); ?></td>
   </tr>
 
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

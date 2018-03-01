@@ -16,7 +16,7 @@
 Auth::routes();
 Route::get('/', function()
 {
-  return view('Sementara');
+  return view('index');
 });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('registrasi-selesai', function(){

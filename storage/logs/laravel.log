@@ -9322,3 +9322,19 @@ Did you mean this?
 #52 /home/dimas/WebIPMKRYKKB/server.php(21): require_once('/home/dimas/Web...')
 #53 {main}
 "} 
+[2018-03-01 16:26:13] local.ERROR: There are no commands defined in the "migration" namespace.
+
+Did you mean this?
+    migrate {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): There are no commands defined in the \"migration\" namespace.
+
+Did you mean this?
+    migrate at /home/dimas/WebIPMKRYKKB/vendor/symfony/console/Application.php:556)
+[stacktrace]
+#0 /home/dimas/WebIPMKRYKKB/vendor/symfony/console/Application.php(596): Symfony\\Component\\Console\\Application->findNamespace('migration')
+#1 /home/dimas/WebIPMKRYKKB/vendor/symfony/console/Application.php(221): Symfony\\Component\\Console\\Application->find('migration:refre...')
+#2 /home/dimas/WebIPMKRYKKB/vendor/symfony/console/Application.php(148): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /home/dimas/WebIPMKRYKKB/vendor/laravel/framework/src/Illuminate/Console/Application.php(88): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /home/dimas/WebIPMKRYKKB/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(121): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 /home/dimas/WebIPMKRYKKB/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 

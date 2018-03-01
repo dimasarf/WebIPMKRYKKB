@@ -15,16 +15,22 @@ class CreateAnggotasTable extends Migration
     {
         Schema::create('anggotas', function (Blueprint $table) {
           $table->increments('id');
-          $table->string('namaLengkap');
-          $table->string('tanggalLahir');
-          $table->string('jenisKelamin');
-          $table->string('alamatJogja');
-          $table->string('alamatBatam');
-          $table->string('universitas');
-          $table->string('jurusan');
-          $table->string('angkatan');
-          $table->string('idLine');
-          $table->string('keanggotaan');
+          $table->string('namaLengkap', 191);
+          $table->string('tanggalLahir',191);
+          $table->string('jenisKelamin',191);
+          $table->string('alamatJogja',191);
+          $table->string('alamatBatam',191);
+          $table->string('universitas',191);
+          $table->string('jurusan',191);
+          $table->string('angkatan',191);
+          $table->string('idLine',191);
+          $table->string('keanggotaan',191);
+          $table->string('noPribadi',191);
+          $table->string('agama',191);
+          $table->string('asalSekolah',191);
+          $table->string('tempatLahir',191);
+          $table->string('sumberInformasi',191);
+          $table->string('noOrtu',191);
           $table->timestamps();
         });
     }

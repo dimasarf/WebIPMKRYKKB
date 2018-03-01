@@ -19,14 +19,20 @@
     <th>ID</th>
     <th>Nama Lengkap</th>
     <th>Tanggal Lahir</th>
+    <th>Tempat Lahir</th>
     <th>Jenis Kelamin</th>
     <th>Alamat Jogja</th>
     <th>Alamat Batam</th>
     <th>Universitas</th>
     <th>Jurusan</th>
     <th>Angkatan</th>
+    <th>Asal Sekolah</th>
     <th>Id Line</th>
     <th>Keanggotaan</th>
+    <th>Agama</th>
+    <th>Nomor Hp Pribadi</th>
+    <th>Nomor HP Orangtua</th>
+    <th>Sumber Informasi</th>
   </tr>
   </thead>
   <tbody>
@@ -36,14 +42,20 @@
       <td value="{{$anggotA->id}}">{{$anggotA->id}}</td>
       <td class="namaLengkap">{{$anggotA->namaLengkap}}</td>
       <td>{{$anggotA->tanggalLahir}}</td>
+      <td>{{$anggotA->tempatLahir}}</td>
       <td>{{$anggotA->jenisKelamin}}</td>
       <td>{{$anggotA->alamatJogja}}</td>
       <td>{{$anggotA->alamatBatam}}</td>
       <td>{{$anggotA->universitas}}</td>
       <td>{{$anggotA->jurusan}}</td>
       <td>{{$anggotA->angkatan}}</td>
+      <td>{{$anggotA->asalSekolah}}</td>
       <td>{{$anggotA->idLine}}</td>
       <td>{{$anggotA->keanggotaan}}</td>
+      <td>{{$anggotA->agama}}</td>
+      <td>{{$anggotA->noPribadi}}</td>
+      <td>{{$anggotA->noOrtu}}</td>
+      <td>{{$anggotA->sumberInformasi}}</td>
       <td><button type="button" class="btn btn-danger hapus" data-dismiss="modal" id="delete">Hapus</button></td>
     </tr>
 
