@@ -14,15 +14,28 @@
 
 
 Auth::routes();
-Route::get('/', function()
+Route::post('/post-berita', 'TesKontenController@store');
+Route::get('/', 'HalamanUtamaController@index');
+Route::get('/post-berita', 'TesKontenController@index');
+Route::get('/alumni', 'HalamanUtamaController@indexAlumni');
+Route::post('upload', 'UploadController@upload');
+Route::get('upload', function()
 {
-  return view('index');
+  return view('Upload');
 });
+
+Route::post('bikin-album', 'AlbumController@StoreNewAlbum');
+Route::get('bikin-album', function()
+{
+  return view('album');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('registrasi-selesai', function(){
   return view('Selesai');
 });
 Route::get('Dashboard','DashboardController@index');
+Route::get('Dashboard-Postingan','DashboardController@indexPostingan');
 Route::get('Dashboard-Pengurus','DashboardController@indexPengurus')->name('dashboard.pengurus');
 Route::get('Dashboard-Anggota-Biasa','DashboardController@indexAnggotaBiasa')->name('dashboard.anggotaBiasa');
 Route::get('Dashboard-Search','DashboardController@Search')->name('dashboard.search');

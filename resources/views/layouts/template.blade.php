@@ -12,7 +12,17 @@
 
     <nav class="navbar navbar-expand-md navbar-default">
       <a class="navbar-brand" href="#">Humas IPMKRY-KKB</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/Dashboard">Anggota</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Dashboard-Postingan">Postingan</a>
+        </li>
+      </ul>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -83,27 +93,11 @@
 
   <section>
 
+
     <div class="container ml-5">
       <div class="row">
-        <div class="col-lg-3">
-          <div class="list-group">
-            <a href="/Dashboard" class="list-group-item active main-color-bg">
-              <span><img src="dashboard.png" alt="" class="img-rounded" width="20px"></span> Dashboard
-            </a>
-              <a href="{{route('dashboard.anggotaBiasa')}}" id="linkk" class="list-group-item list-group-item-action"><span><img src="anggota.png" alt="" class="img-rounded" width="30px"></span> Anggota</a>
+          @yield('sidenav')
 
-            <a href="{{route('dashboard.pengurus')}}" class="list-group-item list-group-item-action"><span><img src="pengurus.png" alt="" class="img-rounded" width="30px"></span> Pengurus</a>
-          </div>
-          <br>
-          <div class="card">
-            <div class="card-header main-color-bg">
-              <span><img src="stats.png" alt="" class="img-rounded" width="30px"></span> Persentase
-            </div>
-            <div class="card-block">
-                <canvas id="canvas" width="300" height="300"></canvas>
-            </div>
-          </div>
-        </div>
         <div class="col-lg-9" id="kontent">
           @yield('content')
 
@@ -115,41 +109,9 @@
   </section>
     </div>
     <script  src="http://code.jquery.com/jquery-3.3.1.js"  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="  crossorigin="anonymous"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" integrity="sha256-N4u5BjTLNwmGul6RgLoESPNqDFVUibVuOYhP4gJgrew=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" integrity="sha256-c0m8xzX5oOBawsnLVpHnU2ieISOvxi584aNElFl2W6M=" crossorigin="anonymous"></script>
-
-    <script src="{{url('js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript">
-      var chart = document.getElementById('canvas').getContext('2d');
-      var pengurus = @json($persentasePengurus);
-      var anggotaBiasa = @json($persentaseAnggotaBiasa);
-      var myChart = new Chart(chart,{
-        type: 'doughnut',
-        data :{
-          labels:['Pengurus','Anggota'],
-          datasets:[{
-            label : 'Jumlah',
-            data :[
-                pengurus , anggotaBiasa
-            ],
-            backgroundColor:[
-              '#f39c12','#1abc9c'
-            ]
-          }]
-        },
-        option:{}
-      });
-      $(document).ready(function () {
-        $('#linkk').click(function () {
-          $.get('/Dashboard/Anggota-Biasa', function(data){
-            $('#kontent').append(data);
-          });
-        });
-      });
-    </script>
 
   </body>
 

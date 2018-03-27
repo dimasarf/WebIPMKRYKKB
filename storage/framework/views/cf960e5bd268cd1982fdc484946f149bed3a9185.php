@@ -1,3 +1,52 @@
+<?php $__env->startSection('sidenav'); ?>
+  <div class="col-lg-3">
+    <div class="list-group">
+      <a href="/Dashboard" class="list-group-item active main-color-bg">
+        <span><img src="dashboard.png" alt="" class="img-rounded" width="20px"></span> Dashboard
+      </a>
+        <a href="<?php echo e(route('dashboard.anggotaBiasa')); ?>" id="linkk" class="list-group-item list-group-item-action"><span><img src="anggota.png" alt="" class="img-rounded" width="30px"></span> Anggota</a>
+
+      <a href="<?php echo e(route('dashboard.pengurus')); ?>" class="list-group-item list-group-item-action"><span><img src="pengurus.png" alt="" class="img-rounded" width="30px"></span> Pengurus</a>
+    </div>
+    <br>
+    <div class="card">
+      <div class="card-header main-color-bg">
+        <span><img src="stats.png" alt="" class="img-rounded" width="30px"></span> Persentase
+      </div>
+      <div class="card-block">
+          <canvas id="canvas" width="300" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var chart = document.getElementById('canvas').getContext('2d');
+    var pengurus = <?php echo json_encode($persentasePengurus, 15, 512) ?>;
+    var anggotaBiasa = <?php echo json_encode($persentaseAnggotaBiasa, 15, 512) ?>;
+    var myChart = new Chart(chart,{
+      type: 'doughnut',
+      data :{
+        labels:['Pengurus','Anggota'],
+        datasets:[{
+          label : 'Jumlah',
+          data :[
+              pengurus , anggotaBiasa
+          ],
+          backgroundColor:[
+            '#f39c12','#1abc9c'
+          ]
+        }]
+      },
+      option:{}
+    });
+    $(document).ready(function () {
+      $('#linkk').click(function () {
+        $.get('/Dashboard/Anggota-Biasa', function(data){
+          $('#kontent').append(data);
+        });
+      });
+    });
+  </script>
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="active">Dashboard/Anggota-Biasa</li>
 <?php $__env->stopSection(); ?>
@@ -17,14 +66,20 @@
     <th>ID</th>
     <th>Nama Lengkap</th>
     <th>Tanggal Lahir</th>
+    <th>Tempat Lahir</th>
     <th>Jenis Kelamin</th>
     <th>Alamat Jogja</th>
     <th>Alamat Batam</th>
     <th>Universitas</th>
     <th>Jurusan</th>
     <th>Angkatan</th>
+    <th>Asal Sekolah</th>
     <th>Id Line</th>
     <th>Keanggotaan</th>
+    <th>Agama</th>
+    <th>Nomor Hp Pribadi</th>
+    <th>Nomor HP Orangtua</th>
+    <th>Sumber Informasi</th>
   </tr>
   </thead>
   <tbody>
@@ -34,14 +89,20 @@
       <td value="<?php echo e($anggotA->id); ?>"><?php echo e($anggotA->id); ?></td>
       <td class="namaLengkap"><?php echo e($anggotA->namaLengkap); ?></td>
       <td><?php echo e($anggotA->tanggalLahir); ?></td>
+      <td><?php echo e($anggotA->tempatLahir); ?></td>
       <td><?php echo e($anggotA->jenisKelamin); ?></td>
       <td><?php echo e($anggotA->alamatJogja); ?></td>
       <td><?php echo e($anggotA->alamatBatam); ?></td>
       <td><?php echo e($anggotA->universitas); ?></td>
       <td><?php echo e($anggotA->jurusan); ?></td>
       <td><?php echo e($anggotA->angkatan); ?></td>
+      <td><?php echo e($anggotA->asalSekolah); ?></td>
       <td><?php echo e($anggotA->idLine); ?></td>
       <td><?php echo e($anggotA->keanggotaan); ?></td>
+      <td><?php echo e($anggotA->agama); ?></td>
+      <td><?php echo e($anggotA->noPribadi); ?></td>
+      <td><?php echo e($anggotA->noOrtu); ?></td>
+      <td><?php echo e($anggotA->sumberInformasi); ?></td>
       <td><button type="button" class="btn btn-danger hapus" data-dismiss="modal" id="delete">Hapus</button></td>
     </tr>
 
@@ -260,5 +321,11 @@
   </div>
   </div>
 <?php $__env->stopSection(); ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" integrity="sha256-N4u5BjTLNwmGul6RgLoESPNqDFVUibVuOYhP4gJgrew=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" integrity="sha256-c0m8xzX5oOBawsnLVpHnU2ieISOvxi584aNElFl2W6M=" crossorigin="anonymous"></script>
+
+<script src="<?php echo e(url('js/bootstrap.min.js')); ?>"></script>
 
 <?php echo $__env->make('layouts.template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\anggota;
+use App\TesKonten;
 use Excel;
 
 class DashboardController extends Controller
@@ -17,6 +18,15 @@ class DashboardController extends Controller
       $persentasePengurus = $this->PersentasePengurus();
       $persentaseAnggotaBiasa = $this->PersentaseAnggotaBiasa();
       return view('Dashboard',compact('anggota','pengurus','anggotaBiasa','anggotas', 'persentasePengurus','persentaseAnggotaBiasa'));
+    }
+
+    public function indexPostingan()
+    {
+      $totalKonten = $this->HitungTotalKonten();
+      $kontens = TesKonten::orderBy('created_at','desc')->paginate(5);
+      $persentasePengurus = $this->PersentasePengurus();
+      $persentaseAnggotaBiasa = $this->PersentaseAnggotaBiasa();
+      return view('PostDashboard',compact('kontens','totalKonten' ,'persentasePengurus','persentaseAnggotaBiasa'));
     }
 
     public function ExportPengurus()
@@ -70,7 +80,11 @@ class DashboardController extends Controller
       $hasil = anggota::count();
       return $hasil;
     }
-
+    public function HitungTotalKonten()
+    {
+      $hasil = TesKonten::count();
+      return $hasil;
+    }
     public function HitungPengurus()
     {
       $hasil = anggota::where(['keanggotaan'=>'pengurus'])->get()->count();

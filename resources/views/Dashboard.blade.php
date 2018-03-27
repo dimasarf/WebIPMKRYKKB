@@ -1,5 +1,53 @@
 @extends('layouts.template')
+@section('sidenav')
+  <div class="col-lg-3">
+    <div class="list-group">
+      <a href="/Dashboard" class="list-group-item active main-color-bg">
+        <span><img src="dashboard.png" alt="" class="img-rounded" width="20px"></span> Dashboard
+      </a>
+        <a href="{{route('dashboard.anggotaBiasa')}}" id="linkk" class="list-group-item list-group-item-action"><span><img src="anggota.png" alt="" class="img-rounded" width="30px"></span> Anggota</a>
 
+      <a href="{{route('dashboard.pengurus')}}" class="list-group-item list-group-item-action"><span><img src="pengurus.png" alt="" class="img-rounded" width="30px"></span> Pengurus</a>
+    </div>
+    <br>
+    <div class="card">
+      <div class="card-header main-color-bg">
+        <span><img src="stats.png" alt="" class="img-rounded" width="30px"></span> Persentase
+      </div>
+      <div class="card-block">
+          <canvas id="canvas" width="300" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var chart = document.getElementById('canvas').getContext('2d');
+    var pengurus = @json($persentasePengurus);
+    var anggotaBiasa = @json($persentaseAnggotaBiasa);
+    var myChart = new Chart(chart,{
+      type: 'doughnut',
+      data :{
+        labels:['Pengurus','Anggota'],
+        datasets:[{
+          label : 'Jumlah',
+          data :[
+              pengurus , anggotaBiasa
+          ],
+          backgroundColor:[
+            '#f39c12','#1abc9c'
+          ]
+        }]
+      },
+      option:{}
+    });
+    $(document).ready(function () {
+      $('#linkk').click(function () {
+        $.get('/Dashboard/Anggota-Biasa', function(data){
+          $('#kontent').append(data);
+        });
+      });
+    });
+  </script>
+@endsection
 
 
 @section('content')
