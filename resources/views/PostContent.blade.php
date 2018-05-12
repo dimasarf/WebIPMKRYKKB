@@ -38,7 +38,7 @@
 
     </div>
     <div class="card-block mb-4" >
-      <form action="/post-berita" method="POST" class=" mx-auto">
+      <form action="/post-berita" method="POST" class=" mx-auto" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="col-lg-12">
             <fieldset class="form-group mt-1">
@@ -46,6 +46,24 @@
               <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul">
             </fieldset>
             <textarea name="summernoteInput" class="summernote" id="summernote"></textarea>
+            <fieldset class="form-group mt-1">
+              <label for="exampleInputEmail1">Tags</label>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pilih Kategori
+                </button>
+                <select class="dropdown-menu" name="kategori" id="kategori">
+                  @foreach ($kategoris as $kategori )
+                    <option selected="kategori" value="{{$kategori->id}}">{{$kategori->kategori}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </fieldset>
+            <fieldset class="form-group mt-1">
+              <label for="exampleInputEmail1">Unggah foto headline</label>
+                <input type="file" id="inputGroupFile02" class="custom-file-input" required name="file" >
+
+            </fieldset>
             <br>
             <button class="btn btn-primary" type="submit">Submit</button>
           </div>

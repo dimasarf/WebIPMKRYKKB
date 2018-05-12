@@ -12,5 +12,6 @@ class AlbumController extends Controller
       $album = new album;
       $album->nama = $request->nama;
       $album->save();
+      return Redirect("/Dashboard-Galeri");
     }
 }

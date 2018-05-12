@@ -14,16 +14,27 @@
 
 
 Auth::routes();
+Route::get('/galleries/{id}','GalleriesController@indexFoto');
+Route::get('/galleries','GalleriesController@index');
 Route::post('/post-berita', 'TesKontenController@store');
 Route::get('/', 'HalamanUtamaController@index');
 Route::get('/post-berita', 'TesKontenController@index');
+Route::get('/post/{id}', 'DetailContentController@index');
+Route::get('/Sunting-Konten/{id}', 'TesKontenController@show');
+Route::post('/Sunting-Konten/{id}', 'TesKontenController@update');
 Route::get('/alumni', 'HalamanUtamaController@indexAlumni');
 Route::post('upload', 'UploadController@upload');
+Route::post('reply/{id}', 'ReplyController@Reply');
+Route::get('/news/{id}','NewsController@indexEvent');
+Route::get('/news','NewsController@index');
+Route::get('/Dashboard-Galeri', 'DashboardController@indexGaleri');
+Route::get('/Detail-Foto/{id}', 'DashboardController@getFotos');
+Route::get('/img-download/{id}', 'GalleriesController@Download');
 Route::get('upload', function()
 {
-  return view('Upload');
+  return view('berita');
 });
-
+Route::delete('/Delete-Foto/{idfoto}','UploadController@deleteFoto');
 Route::post('bikin-album', 'AlbumController@StoreNewAlbum');
 Route::get('bikin-album', function()
 {

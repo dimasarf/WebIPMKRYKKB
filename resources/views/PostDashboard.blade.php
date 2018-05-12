@@ -68,7 +68,7 @@
       <td>{{$konten->judul}}</td>
       <td>{{$konten->created_at}}</td>
       <td>{{$konten->updated_at}}</td>
-      <td><button type="button" class="btn btn-primary">Sunting</button></td>
+      <td><a href="/Sunting-Konten/{{$konten->id}}" class="btn btn-primary">Sunting</a></td>
   </tr>
   @endforeach
 

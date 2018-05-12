@@ -13,23 +13,26 @@ class UploadController extends Controller
       If(Input::hasFile('file')){
 
 
-            $file = Input::file('file');
+            $files = Input::file('file');
+            foreach ($files as $file ) {
+              $destinationPath = public_path(). '/uploads/';
+              $filename = $file->getClientOriginalName();
 
-            $destinationPath = public_path(). '/uploads/';
-            $filename = $file->getClientOriginalName();
+              $file->move($destinationPath, $filename);
+              $foto = new foto;
 
-            $file->move($destinationPath, $filename);
-
-            echo  $filename;
-            //echo '<img src="uploads/'. $filename . '"/>';
-
-            $foto = new foto;
-            
-            $foto->idalbum = 1;
-            $foto->foto = $filename;
-            $foto->save();
+              $foto->album_id = $request->album;
+              $foto->foto = $filename;
+              $foto->save();
+            }
+            return Redirect('/Dashboard-Galeri');
         }
-
-
       }
-    }
+
+      public function deleteFoto($idfoto)
+      {
+        $foto = foto::find($idfoto);
+        $foto->delete();
+        return back();
+      }
+  }

@@ -19,6 +19,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/Dashboard-Postingan">Postingan</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Dashboard-Galeri">Galeri</a>
+        </li>
       </ul>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -61,7 +64,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-5 ">
-            <h3 class=""><span><img src="Logo2.png" class=""alt="" width="55px"></span> Dashboard </h3>
+            <h3 class=""><span><img src="/Logo2.png" class=""alt="" width="55px"></span> Dashboard </h3>
         </div>
         <div class="col-lg-6">
 

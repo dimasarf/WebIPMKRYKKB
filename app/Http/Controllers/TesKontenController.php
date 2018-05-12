@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\TesKonten;
 use Illuminate\Http\Request;
+use App\kategori;
+use Illuminate\Support\Facades\Input as Input;
 
 class TesKontenController extends Controller
 {
@@ -14,7 +16,8 @@ class TesKontenController extends Controller
      */
     public function index()
     {
-        return view('PostContent');
+        $kategoris = kategori::all();
+        return view('PostContent',compact('kategoris'));
     }
 
     /**
@@ -40,8 +43,10 @@ class TesKontenController extends Controller
         $dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
         $images = $dom->getelementsbytagname('img');
-
-
+        $fotos = Input::file('file');
+        $destinationPath = public_path().'/uploads/';
+        $filename = $fotos->getClientOriginalName();
+        $fotos->move($destinationPath, $filename);
         foreach ($images as $k => $img)
         {
           $data = $img->getattribute('src');
@@ -60,6 +65,8 @@ class TesKontenController extends Controller
         $konten = new TesKonten();
         $konten->konten = $request->summernoteInput;
         $konten->judul = $request->judul;
+        $konten->kategori_id = $request->kategori;
+        $konten->foto_depan = $filename;
         $konten->save();
         return Redirect('/Dashboard-Postingan');
     }
@@ -70,9 +77,11 @@ class TesKontenController extends Controller
      * @param  \App\TesKonten  $tesKonten
      * @return \Illuminate\Http\Response
      */
-    public function show(TesKonten $tesKonten)
+    public function show($id)
     {
-        //
+        $kategoris = kategori::all();
+        $konten = TesKonten::find($id);
+        return view('EditPost', compact('konten','kategoris'));
     }
 
     /**
@@ -93,9 +102,36 @@ class TesKontenController extends Controller
      * @param  \App\TesKonten  $tesKonten
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TesKonten $tesKonten)
+    public function update(Request $request, $id)
     {
-        //
+      $detail = $request->summernoteInput;
+      $dom = new \domdocument();
+      $dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+      $images = $dom->getelementsbytagname('img');
+
+
+      foreach ($images as $k => $img)
+      {
+        $data = $img->getattribute('src');
+
+        list($type, $data) = explode(';', $data);
+        list(,$data) = explode(',',$data);
+
+        $data = base64_decode($data);
+        $image_name = time().$k.'png';
+        $path = public_path().'/'.$image_name;
+
+        file_put_contents($path, $data);
+        $img->setattribute('src',$image_name);
+      }
+      $detail = $dom->savehtml();
+      $konten =TesKonten::find($id);
+      $konten->konten = $request->summernoteInput;
+      $konten->judul = $request->judul;
+      $konten->kategori_id = $request->kategori;
+      $konten->save();
+      return Redirect('/Dashboard-Postingan');
     }
 
     /**

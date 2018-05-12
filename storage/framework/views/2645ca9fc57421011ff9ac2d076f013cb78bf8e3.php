@@ -24,9 +24,9 @@
 			<div class="dropdownMenu" id="navbarSupportedContent">
 				<ul>
 					<li><a href="#" onclick="document.getElementById('contact').style.display='block'">Contact</a></li>
-					<li><a href="alumni">Alumni</a>
+					<li><a href="/news">Berita</a>
 					</li>
-					<li><a href="#">FAQ</a></li>
+					<li><a href="/galleries">Gallery</a></li>
 				</ul>
 			</div>
 			<div id="sidebar">
@@ -75,46 +75,25 @@
 			</div>
 		</div>
 		<!-- Berita -->
+
 		<div id="berita">
 			<div class="beritaLayout">
 				<div class="beritaRedaksi">
 					<h2>Berita</h2>
 					<p>Seputar Batam dan Yogyakarta</p>
 				</div>
-				<div class="galleryOver">
-					<div class="batasBerita">
-						<div class="beritaContent">
-							<a target="_blank" href="flyover.jpg">
-								<img src="flyover.jpg" width="300" height="200">
-								<div class="btnBerita"><a href="#">Read More</a></div>
-							</a>
+				<?php $__currentLoopData = $kontens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $konten): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+						<div class="batasBerita">
+							<div class="beritaContent">
+								<a target="_blank" href="flyover.jpg">
+									<img src="<?php echo e(URL::asset('uploads/'.$konten->foto_depan)); ?>" width="300" height="200">
+									<center><span class="label label-default"><?php echo e($konten->judul); ?></span></center>
+									<div class="btnBerita"><a href="/post/<?php echo e($konten->id); ?>">Read More</a></div>
+								</a>
+							</div>
 						</div>
-					</div>
-					<div class="batasBerita">
-						<div class="beritaContent">
-							<a target="_blank" href="finis.jpeg">
-								<img src="finis.jpeg" width="300" height="200">
-								<div class="btnBerita"><a href="#">Read More</a></div>
-							</a>
-						</div>
-					</div>
-					<div class="batasBerita">
-						<div class="beritaContent">
-							<a target="_blank" href="pt.jpeg">
-								<img src="  /pt.jpeg" width="300" height="200">
-								<div class="btnBerita"><a href="#">Read More</a></div>
-							</a>
-						</div>
-					</div>
-					<div class="batasBerita">
-						<div class="beritaContent">
-							<a target="_blank" href="rutan.jpg">
-								<img src="  /rutan.jpg" width="300" height="200">
-								<div class="btnBerita"><a href="#">Read More</a></div>
-							</a>
-						</div>
-					</div>
-				</div>
+				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
 			</div>
 		</div>
 

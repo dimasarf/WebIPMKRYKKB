@@ -67,7 +67,7 @@
       <td><?php echo e($konten->judul); ?></td>
       <td><?php echo e($konten->created_at); ?></td>
       <td><?php echo e($konten->updated_at); ?></td>
-      <td><button type="button" class="btn btn-primary">Sunting</button></td>
+      <td><a href="/Sunting-Konten/<?php echo e($konten->id); ?>" class="btn btn-primary">Sunting</a></td>
   </tr>
   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

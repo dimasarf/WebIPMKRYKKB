@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\anggota;
 use App\TesKonten;
+use App\album;
+use App\foto;
 use Excel;
 
 class DashboardController extends Controller
@@ -27,6 +29,29 @@ class DashboardController extends Controller
       $persentasePengurus = $this->PersentasePengurus();
       $persentaseAnggotaBiasa = $this->PersentaseAnggotaBiasa();
       return view('PostDashboard',compact('kontens','totalKonten' ,'persentasePengurus','persentaseAnggotaBiasa'));
+    }
+
+    public function indexGaleri()
+    {
+      $totalAlbum = $this->HitungTotalAlbum();
+      $albums = album::orderBy('created_at','desc')->paginate(5);
+      $albumMenus = album::all();
+      $totalFoto = foto::count();
+      $persentasePengurus = $this->PersentasePengurus();
+      $persentaseAnggotaBiasa = $this->PersentaseAnggotaBiasa();
+      return view('GaleriDashboard',compact('albums','totalAlbum', 'totalFoto', 'persentasePengurus','persentaseAnggotaBiasa','albumMenus'));
+    }
+
+    public function getFotos($id)
+    {
+      $fotos = album::find($id)->foto;
+      return view('DetailFoto', compact('fotos'));
+    }
+
+    public function HitungTotalAlbum()
+    {
+      $total = album::count();
+      return $total;
     }
 
     public function ExportPengurus()
